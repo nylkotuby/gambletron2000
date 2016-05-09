@@ -1,0 +1,40 @@
+# Classes
+---------
+
+runner:
+- Track and report game state
+- Outline of a game in general -- calls highest-level methods for each stage
+
+play_manager:
+- Contains the methods that runner calls that involve teams 
+- Directly calls down to team for actions that only require a single team
+- Handles interplay for actions that require both teams (aka running a play)
+- Calls down to handle injuries, etc.
+
+team:
+- Abstract class specifying the strategy-related/other methods a team needs
+- Called by play_manager
+- Subclasses will implement their own plays and call at appropriate times
+
+team_[name]:
+- Subclasses of team; 2 required per game
+- TODO: implement conferences, full-season simulations
+
+roster:
+- Data structure representing a team roster
+- Has a list for each position containing all players who play that position
+- Has a hashmap for starting lineup mapping position -> player
+- Has a list of injured players
+- Contains methods for processing these lists to get the current players on the field
+- TODO: throw errors for illegal externally-read roster configurations
+- TODO: abstract?
+
+player:
+- Specification of a single player's stats
+
+parser:
+- Parses players and play names from .csv files, returns corresponding internal object
+- TODO: likely to change; external reading to be added after internal gameplay works well enough
+
+test_[name]:
+- Exactly what it says on the tin
