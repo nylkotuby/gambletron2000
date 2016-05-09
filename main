@@ -1,0 +1,11 @@
+#!/usr/bin/env python2.7
+from runner import Runner
+from teams.patriots import Patriots
+from teams.eagles import Eagles
+
+def main():
+	runner = Runner(Patriots(), Eagles())
+	runner.run_game()
+
+if __name__ == "__main__":
+	main()

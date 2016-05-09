@@ -1,9 +1,16 @@
-# Classes
+# Components
 ---------
+
+main:
+- Kick off game by creating team instances and passing to runner
+- TODO: take .csv files from command line and use those for teams
 
 runner:
 - Track and report game state
 - Outline of a game in general -- calls highest-level methods for each stage
+
+game_state:
+- Game state data structure -- current down, score, possession, etc.
 
 play_manager:
 - Contains the methods that runner calls that involve teams 
@@ -16,18 +23,21 @@ team:
 - Called by play_manager
 - Subclasses will implement their own plays and call at appropriate times
 
-team_[name]:
+teams/[name]:
 - Subclasses of team; 2 required per game
 - TODO: implement conferences, full-season simulations
 
 roster:
-- Data structure representing a team roster
+- Abstract data structure representing a team roster
 - Has a list for each position containing all players who play that position
 - Has a hashmap for starting lineup mapping position -> player
 - Has a list of injured players
 - Contains methods for processing these lists to get the current players on the field
 - TODO: throw errors for illegal externally-read roster configurations
-- TODO: abstract?
+
+teams/[name]_roster:
+- Subclasses of roster; 1 required per team 
+- TODO: eliminate this class and read from .csv files instead
 
 player:
 - Specification of a single player's stats
@@ -35,6 +45,19 @@ player:
 parser:
 - Parses players and play names from .csv files, returns corresponding internal object
 - TODO: likely to change; external reading to be added after internal gameplay works well enough
+- TODO: bad design? should each class contain its own parsing functions?
 
-test_[name]:
+constants:
+- Contains any values that may be subject to change (ex. extra point distance) or that would
+  be clearer with a name instead of a number
+
+tests/test_[name]:
 - Exactly what it says on the tin
+
+
+Note: System is currently being built with an Eagles @ Patriots game for testing purposes.
+      Reading in team info instead of hardcoding it is a key goal, but won't be tackled until
+      running the test game seems to work correctly. 
+
+Note: Comment style throughout is a monstrous mix of PEP257, reST, and whatever it is that 
+      Matthias has beaten into every NEU student. Also, tabs instead of spaces. Sorry.
