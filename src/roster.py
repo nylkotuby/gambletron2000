@@ -13,7 +13,7 @@ class Roster(metaclass=ABCMeta):
 
 	starting_lineup: Map of position (string) -> starting players (list).
 
-	injured: plain list of injured players who are benched from the game
+	ejected: plain list of players who are benched from the game; usually badly-injured ones
 
 	TODO: break up w/m/s linebackers
 	"""
@@ -23,13 +23,22 @@ class Roster(metaclass=ABCMeta):
 	starting_lineup = {"c": [], "g": [], "t": [], "qb": [], "rb": [], "wr": [], "te": [],
 	                   "dt": [], "de": [], "lb": [], "cb": [], "s": [], "k": [], "p": []}
 
-	injured = []
+	ejected = []
 
-	def remove_injured_player(self, player):
+	def remove_ejected_player(self, player):
 		"""
-		Move an injured player from the roster to list of injured
+		Move an ejected player from the roster to list of injured
 		:param player: the Player object who needs to be moved
 		Void -> Void
 		"""
 		self.roster[player.position].remove(player)
-		self.injured.append(player)
+		self.ejected.append(player)
+
+	@abstractmethod
+	def get_position(self, position):
+		"""
+		Choose the next player at the given position to send out
+		NOTE: using a good position comparator is probably better than a giant if/elif/else for this
+		String -> Player
+		"""
+		return roster[position][0]
