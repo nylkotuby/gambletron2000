@@ -1,4 +1,4 @@
-# Components
+# Major components
 ---------
 
 main:
@@ -8,6 +8,7 @@ main:
 runner:
 - Track and report game state
 - Outline of a game in general -- calls highest-level methods for each stage
+- TODO: merge with play_manager?
 
 game_state:
 - Game state data structure -- current down, score, possession, etc.
@@ -19,7 +20,7 @@ play_manager:
 - Calls down to handle injuries, etc.
 
 team:
-- Abstract class specifying the strategy-related/other methods a team needs
+- Interface specifying the strategy-related/other methods a team needs
 - Called by play_manager
 - Subclasses will implement their own plays and call at appropriate times
 
@@ -41,6 +42,13 @@ teams/[name]_roster:
 
 player:
 - Specification of a single player's stats
+
+
+# Other classes
+
+status_change:
+- Represents a change in a player's status. 
+- Off the top of my head, this is just injuries, but there may be other things
 
 parser:
 - Parses players and play names from .csv files, returns corresponding internal object

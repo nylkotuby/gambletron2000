@@ -1,0 +1,4 @@
+TD_PTS = 6
+FG_PTS = 2
+EXTRA_PT = 1
+CONVERSION = 2

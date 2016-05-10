@@ -11,6 +11,10 @@ class Runner:
 
 
 	def run_game(self):
+		"""
+		Take care of game setup/end and run main loop
+		Void -> Void
+		"""
 		# coin toss 
 		# loop: game
 		# ot?
